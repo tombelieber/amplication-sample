@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.12.7",
+  "appInfo": {
+    "name": "Famatch App Bootstrap",
+    "description": "Sample application for e-commerce + Famatch boilerplate bootstrap ",
+    "version": "yy7t3pmu",
+    "id": "cl2x3h4xm111313101s65wkfheci",
+    "url": "https://app.amplication.com/cl2x3h4xm111313101s65wkfheci",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "famatch-app-bootstrap",
+      "dbPassword": "admin",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "cl2x3h4xm111313101s65wkfheci",
+      "authProvider": "Jwt"
+    }
+  }
+}
