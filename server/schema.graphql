@@ -1,0 +1,996 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Address {
+  address_1: String
+  address_2: String
+  city: String
+  createdAt: DateTime!
+  customers(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
+  id: String!
+  state: String
+  updatedAt: DateTime!
+  zip: Float
+}
+
+input AddressCreateInput {
+  address_1: String
+  address_2: String
+  city: String
+  customers: CustomerCreateNestedManyWithoutAddressesInput
+  state: String
+  zip: Float
+}
+
+input AddressOrderByInput {
+  address_1: SortOrder
+  address_2: SortOrder
+  city: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  state: SortOrder
+  updatedAt: SortOrder
+  zip: SortOrder
+}
+
+input AddressUpdateInput {
+  address_1: String
+  address_2: String
+  city: String
+  customers: CustomerUpdateManyWithoutAddressesInput
+  state: String
+  zip: Float
+}
+
+input AddressWhereInput {
+  address_1: StringNullableFilter
+  address_2: StringNullableFilter
+  city: StringNullableFilter
+  customers: CustomerListRelationFilter
+  id: StringFilter
+  state: StringNullableFilter
+  zip: IntNullableFilter
+}
+
+input AddressWhereUniqueInput {
+  id: String!
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+type Customer {
+  address: Address
+  createdAt: DateTime!
+  email: String
+  firstName: String
+  id: String!
+  lastName: String
+  orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
+  phone: String
+  updatedAt: DateTime!
+}
+
+input CustomerCreateInput {
+  address: AddressWhereUniqueInput
+  email: String
+  firstName: String
+  lastName: String
+  orders: OrderCreateNestedManyWithoutCustomersInput
+  phone: String
+}
+
+input CustomerCreateNestedManyWithoutAddressesInput {
+  connect: [CustomerWhereUniqueInput!]
+}
+
+input CustomerListRelationFilter {
+  every: CustomerWhereInput
+  none: CustomerWhereInput
+  some: CustomerWhereInput
+}
+
+input CustomerOrderByInput {
+  addressId: SortOrder
+  createdAt: SortOrder
+  email: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  phone: SortOrder
+  updatedAt: SortOrder
+}
+
+input CustomerUpdateInput {
+  address: AddressWhereUniqueInput
+  email: String
+  firstName: String
+  lastName: String
+  orders: OrderUpdateManyWithoutCustomersInput
+  phone: String
+}
+
+input CustomerUpdateManyWithoutAddressesInput {
+  connect: [CustomerWhereUniqueInput!]
+  disconnect: [CustomerWhereUniqueInput!]
+  set: [CustomerWhereUniqueInput!]
+}
+
+input CustomerWhereInput {
+  address: AddressWhereUniqueInput
+  email: StringNullableFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  orders: OrderListRelationFilter
+  phone: StringNullableFilter
+}
+
+input CustomerWhereUniqueInput {
+  id: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+enum EnumPaymentRecordFrequency {
+  Monthly
+  OneOff
+  Yearly
+}
+
+enum EnumPaymentRecordStatus {
+  Failed
+  Pending
+  Success
+}
+
+enum EnumRoomAllowedFrequency {
+  Failed
+  OneOff
+  Pending
+}
+
+enum EnumRoomStatus {
+  Archive
+  Private
+  Public
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+input FloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createAddress(data: AddressCreateInput!): Address!
+  createCustomer(data: CustomerCreateInput!): Customer!
+  createOrder(data: OrderCreateInput!): Order!
+  createPaymentGateway(data: PaymentGatewayCreateInput!): PaymentGateway!
+  createPaymentRecord(data: PaymentRecordCreateInput!): PaymentRecord!
+  createPlatformProvider(data: PlatformProviderCreateInput!): PlatformProvider!
+  createPlatformTier(data: PlatformTierCreateInput!): PlatformTier!
+  createProduct(data: ProductCreateInput!): Product!
+  createRoom(data: RoomCreateInput!): Room!
+  createRoomEnrollment(data: RoomEnrollmentCreateInput!): RoomEnrollment!
+  createTag(data: TagCreateInput!): Tag!
+  createUser(data: UserCreateInput!): User!
+  deleteAddress(where: AddressWhereUniqueInput!): Address!
+  deleteCustomer(where: CustomerWhereUniqueInput!): Customer!
+  deleteOrder(where: OrderWhereUniqueInput!): Order!
+  deletePaymentGateway(where: PaymentGatewayWhereUniqueInput!): PaymentGateway!
+  deletePaymentRecord(where: PaymentRecordWhereUniqueInput!): PaymentRecord!
+  deletePlatformProvider(where: PlatformProviderWhereUniqueInput!): PlatformProvider!
+  deletePlatformTier(where: PlatformTierWhereUniqueInput!): PlatformTier!
+  deleteProduct(where: ProductWhereUniqueInput!): Product!
+  deleteRoom(where: RoomWhereUniqueInput!): Room!
+  deleteRoomEnrollment(where: RoomEnrollmentWhereUniqueInput!): RoomEnrollment!
+  deleteTag(where: TagWhereUniqueInput!): Tag!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address!
+  updateCustomer(data: CustomerUpdateInput!, where: CustomerWhereUniqueInput!): Customer!
+  updateOrder(data: OrderUpdateInput!, where: OrderWhereUniqueInput!): Order!
+  updatePaymentGateway(data: PaymentGatewayUpdateInput!, where: PaymentGatewayWhereUniqueInput!): PaymentGateway!
+  updatePaymentRecord(data: PaymentRecordUpdateInput!, where: PaymentRecordWhereUniqueInput!): PaymentRecord!
+  updatePlatformProvider(data: PlatformProviderUpdateInput!, where: PlatformProviderWhereUniqueInput!): PlatformProvider!
+  updatePlatformTier(data: PlatformTierUpdateInput!, where: PlatformTierWhereUniqueInput!): PlatformTier!
+  updateProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product!
+  updateRoom(data: RoomUpdateInput!, where: RoomWhereUniqueInput!): Room!
+  updateRoomEnrollment(data: RoomEnrollmentUpdateInput!, where: RoomEnrollmentWhereUniqueInput!): RoomEnrollment!
+  updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Order {
+  createdAt: DateTime!
+  customer: Customer
+  discount: Float
+  id: String!
+  product: Product
+  quantity: Float
+  totalPrice: Float
+  updatedAt: DateTime!
+}
+
+input OrderCreateInput {
+  customer: CustomerWhereUniqueInput
+  discount: Float
+  product: ProductWhereUniqueInput
+  quantity: Float
+  totalPrice: Float
+}
+
+input OrderCreateNestedManyWithoutCustomersInput {
+  connect: [OrderWhereUniqueInput!]
+}
+
+input OrderCreateNestedManyWithoutProductsInput {
+  connect: [OrderWhereUniqueInput!]
+}
+
+input OrderListRelationFilter {
+  every: OrderWhereInput
+  none: OrderWhereInput
+  some: OrderWhereInput
+}
+
+input OrderOrderByInput {
+  createdAt: SortOrder
+  customerId: SortOrder
+  discount: SortOrder
+  id: SortOrder
+  productId: SortOrder
+  quantity: SortOrder
+  totalPrice: SortOrder
+  updatedAt: SortOrder
+}
+
+input OrderUpdateInput {
+  customer: CustomerWhereUniqueInput
+  discount: Float
+  product: ProductWhereUniqueInput
+  quantity: Float
+  totalPrice: Float
+}
+
+input OrderUpdateManyWithoutCustomersInput {
+  connect: [OrderWhereUniqueInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+}
+
+input OrderUpdateManyWithoutProductsInput {
+  connect: [OrderWhereUniqueInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+}
+
+input OrderWhereInput {
+  customer: CustomerWhereUniqueInput
+  discount: FloatNullableFilter
+  id: StringFilter
+  product: ProductWhereUniqueInput
+  quantity: IntNullableFilter
+  totalPrice: IntNullableFilter
+}
+
+input OrderWhereUniqueInput {
+  id: String!
+}
+
+type PaymentGateway {
+  createdAt: DateTime!
+  description: String!
+  id: String!
+  name: String!
+  paymentRecords(orderBy: [PaymentRecordOrderByInput!], skip: Float, take: Float, where: PaymentRecordWhereInput): [PaymentRecord!]!
+  updatedAt: DateTime!
+}
+
+input PaymentGatewayCreateInput {
+  description: String!
+  name: String!
+  paymentRecords: PaymentRecordCreateNestedManyWithoutPaymentGatewaysInput
+}
+
+input PaymentGatewayOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input PaymentGatewayUpdateInput {
+  description: String
+  name: String
+  paymentRecords: PaymentRecordUpdateManyWithoutPaymentGatewaysInput
+}
+
+input PaymentGatewayWhereInput {
+  description: StringFilter
+  id: StringFilter
+  name: StringFilter
+  paymentRecords: PaymentRecordListRelationFilter
+}
+
+input PaymentGatewayWhereUniqueInput {
+  id: String!
+}
+
+type PaymentRecord {
+  amount: Float!
+  createdAt: DateTime!
+  frequency: EnumPaymentRecordFrequency
+  id: String!
+  paymentGateway: PaymentGateway
+  roomEnrollment: RoomEnrollment
+  status: EnumPaymentRecordStatus
+  updatedAt: DateTime!
+}
+
+input PaymentRecordCreateInput {
+  amount: Float!
+  frequency: EnumPaymentRecordFrequency!
+  paymentGateway: PaymentGatewayWhereUniqueInput!
+  roomEnrollment: RoomEnrollmentWhereUniqueInput!
+  status: EnumPaymentRecordStatus!
+}
+
+input PaymentRecordCreateNestedManyWithoutPaymentGatewaysInput {
+  connect: [PaymentRecordWhereUniqueInput!]
+}
+
+input PaymentRecordCreateNestedManyWithoutRoomEnrollmentsInput {
+  connect: [PaymentRecordWhereUniqueInput!]
+}
+
+input PaymentRecordListRelationFilter {
+  every: PaymentRecordWhereInput
+  none: PaymentRecordWhereInput
+  some: PaymentRecordWhereInput
+}
+
+input PaymentRecordOrderByInput {
+  amount: SortOrder
+  createdAt: SortOrder
+  frequency: SortOrder
+  id: SortOrder
+  paymentGatewayId: SortOrder
+  roomEnrollmentId: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+input PaymentRecordUpdateInput {
+  amount: Float
+  frequency: EnumPaymentRecordFrequency
+  paymentGateway: PaymentGatewayWhereUniqueInput
+  roomEnrollment: RoomEnrollmentWhereUniqueInput
+  status: EnumPaymentRecordStatus
+}
+
+input PaymentRecordUpdateManyWithoutPaymentGatewaysInput {
+  connect: [PaymentRecordWhereUniqueInput!]
+  disconnect: [PaymentRecordWhereUniqueInput!]
+  set: [PaymentRecordWhereUniqueInput!]
+}
+
+input PaymentRecordUpdateManyWithoutRoomEnrollmentsInput {
+  connect: [PaymentRecordWhereUniqueInput!]
+  disconnect: [PaymentRecordWhereUniqueInput!]
+  set: [PaymentRecordWhereUniqueInput!]
+}
+
+input PaymentRecordWhereInput {
+  amount: FloatFilter
+  frequency: EnumPaymentRecordFrequency
+  id: StringFilter
+  paymentGateway: PaymentGatewayWhereUniqueInput
+  roomEnrollment: RoomEnrollmentWhereUniqueInput
+  status: EnumPaymentRecordStatus
+}
+
+input PaymentRecordWhereUniqueInput {
+  id: String!
+}
+
+type PlatformProvider {
+  bannerImage: String!
+  createdAt: DateTime!
+  description: String!
+  iconImage: String!
+  id: String!
+  name: String!
+  tags(orderBy: [TagOrderByInput!], skip: Float, take: Float, where: TagWhereInput): [Tag!]!
+  tiers(orderBy: [PlatformTierOrderByInput!], skip: Float, take: Float, where: PlatformTierWhereInput): [PlatformTier!]!
+  updatedAt: DateTime!
+}
+
+input PlatformProviderCreateInput {
+  bannerImage: String!
+  description: String!
+  iconImage: String!
+  name: String!
+  tags: TagCreateNestedManyWithoutPlatformProvidersInput
+  tiers: PlatformTierCreateNestedManyWithoutPlatformProvidersInput
+}
+
+input PlatformProviderCreateNestedManyWithoutTagsInput {
+  connect: [PlatformProviderWhereUniqueInput!]
+}
+
+input PlatformProviderListRelationFilter {
+  every: PlatformProviderWhereInput
+  none: PlatformProviderWhereInput
+  some: PlatformProviderWhereInput
+}
+
+input PlatformProviderOrderByInput {
+  bannerImage: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  iconImage: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input PlatformProviderUpdateInput {
+  bannerImage: String
+  description: String
+  iconImage: String
+  name: String
+  tags: TagUpdateManyWithoutPlatformProvidersInput
+  tiers: PlatformTierUpdateManyWithoutPlatformProvidersInput
+}
+
+input PlatformProviderUpdateManyWithoutTagsInput {
+  connect: [PlatformProviderWhereUniqueInput!]
+  disconnect: [PlatformProviderWhereUniqueInput!]
+  set: [PlatformProviderWhereUniqueInput!]
+}
+
+input PlatformProviderWhereInput {
+  bannerImage: StringFilter
+  description: StringFilter
+  iconImage: StringFilter
+  id: StringFilter
+  name: StringFilter
+  tags: TagListRelationFilter
+  tiers: PlatformTierListRelationFilter
+}
+
+input PlatformProviderWhereUniqueInput {
+  id: String!
+}
+
+type PlatformTier {
+  capcity: Float!
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  price: Float!
+  provider: PlatformProvider
+  rooms(orderBy: [RoomOrderByInput!], skip: Float, take: Float, where: RoomWhereInput): [Room!]!
+  updatedAt: DateTime!
+}
+
+input PlatformTierCreateInput {
+  capcity: Float!
+  name: String!
+  price: Float!
+  provider: PlatformProviderWhereUniqueInput!
+  rooms: RoomCreateNestedManyWithoutPlatformTiersInput
+}
+
+input PlatformTierCreateNestedManyWithoutPlatformProvidersInput {
+  connect: [PlatformTierWhereUniqueInput!]
+}
+
+input PlatformTierListRelationFilter {
+  every: PlatformTierWhereInput
+  none: PlatformTierWhereInput
+  some: PlatformTierWhereInput
+}
+
+input PlatformTierOrderByInput {
+  capcity: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  price: SortOrder
+  providerId: SortOrder
+  updatedAt: SortOrder
+}
+
+input PlatformTierUpdateInput {
+  capcity: Float
+  name: String
+  price: Float
+  provider: PlatformProviderWhereUniqueInput
+  rooms: RoomUpdateManyWithoutPlatformTiersInput
+}
+
+input PlatformTierUpdateManyWithoutPlatformProvidersInput {
+  connect: [PlatformTierWhereUniqueInput!]
+  disconnect: [PlatformTierWhereUniqueInput!]
+  set: [PlatformTierWhereUniqueInput!]
+}
+
+input PlatformTierWhereInput {
+  capcity: IntFilter
+  id: StringFilter
+  name: StringFilter
+  price: FloatFilter
+  provider: PlatformProviderWhereUniqueInput
+  rooms: RoomListRelationFilter
+}
+
+input PlatformTierWhereUniqueInput {
+  id: String!
+}
+
+type Product {
+  createdAt: DateTime!
+  description: String
+  id: String!
+  itemPrice: Float
+  name: String
+  orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
+  updatedAt: DateTime!
+}
+
+input ProductCreateInput {
+  description: String
+  itemPrice: Float
+  name: String
+  orders: OrderCreateNestedManyWithoutProductsInput
+}
+
+input ProductOrderByInput {
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  itemPrice: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input ProductUpdateInput {
+  description: String
+  itemPrice: Float
+  name: String
+  orders: OrderUpdateManyWithoutProductsInput
+}
+
+input ProductWhereInput {
+  description: StringNullableFilter
+  id: StringFilter
+  itemPrice: FloatNullableFilter
+  name: StringNullableFilter
+  orders: OrderListRelationFilter
+}
+
+input ProductWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _addressesMeta(orderBy: [AddressOrderByInput!], skip: Float, take: Float, where: AddressWhereInput): MetaQueryPayload!
+  _customersMeta(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): MetaQueryPayload!
+  _ordersMeta(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): MetaQueryPayload!
+  _paymentGatewaysMeta(orderBy: [PaymentGatewayOrderByInput!], skip: Float, take: Float, where: PaymentGatewayWhereInput): MetaQueryPayload!
+  _paymentRecordsMeta(orderBy: [PaymentRecordOrderByInput!], skip: Float, take: Float, where: PaymentRecordWhereInput): MetaQueryPayload!
+  _platformProvidersMeta(orderBy: [PlatformProviderOrderByInput!], skip: Float, take: Float, where: PlatformProviderWhereInput): MetaQueryPayload!
+  _platformTiersMeta(orderBy: [PlatformTierOrderByInput!], skip: Float, take: Float, where: PlatformTierWhereInput): MetaQueryPayload!
+  _productsMeta(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): MetaQueryPayload!
+  _roomEnrollmentsMeta(orderBy: [RoomEnrollmentOrderByInput!], skip: Float, take: Float, where: RoomEnrollmentWhereInput): MetaQueryPayload!
+  _roomsMeta(orderBy: [RoomOrderByInput!], skip: Float, take: Float, where: RoomWhereInput): MetaQueryPayload!
+  _tagsMeta(orderBy: [TagOrderByInput!], skip: Float, take: Float, where: TagWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  address(where: AddressWhereUniqueInput!): Address
+  addresses(orderBy: [AddressOrderByInput!], skip: Float, take: Float, where: AddressWhereInput): [Address!]!
+  customer(where: CustomerWhereUniqueInput!): Customer
+  customers(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
+  order(where: OrderWhereUniqueInput!): Order
+  orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
+  paymentGateway(where: PaymentGatewayWhereUniqueInput!): PaymentGateway
+  paymentGateways(orderBy: [PaymentGatewayOrderByInput!], skip: Float, take: Float, where: PaymentGatewayWhereInput): [PaymentGateway!]!
+  paymentRecord(where: PaymentRecordWhereUniqueInput!): PaymentRecord
+  paymentRecords(orderBy: [PaymentRecordOrderByInput!], skip: Float, take: Float, where: PaymentRecordWhereInput): [PaymentRecord!]!
+  platformProvider(where: PlatformProviderWhereUniqueInput!): PlatformProvider
+  platformProviders(orderBy: [PlatformProviderOrderByInput!], skip: Float, take: Float, where: PlatformProviderWhereInput): [PlatformProvider!]!
+  platformTier(where: PlatformTierWhereUniqueInput!): PlatformTier
+  platformTiers(orderBy: [PlatformTierOrderByInput!], skip: Float, take: Float, where: PlatformTierWhereInput): [PlatformTier!]!
+  product(where: ProductWhereUniqueInput!): Product
+  products(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): [Product!]!
+  room(where: RoomWhereUniqueInput!): Room
+  roomEnrollment(where: RoomEnrollmentWhereUniqueInput!): RoomEnrollment
+  roomEnrollments(orderBy: [RoomEnrollmentOrderByInput!], skip: Float, take: Float, where: RoomEnrollmentWhereInput): [RoomEnrollment!]!
+  rooms(orderBy: [RoomOrderByInput!], skip: Float, take: Float, where: RoomWhereInput): [Room!]!
+  tag(where: TagWhereUniqueInput!): Tag
+  tags(orderBy: [TagOrderByInput!], skip: Float, take: Float, where: TagWhereInput): [Tag!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type Room {
+  allowedFrequency: [EnumRoomAllowedFrequency!]
+  billingDate: DateTime!
+  capcity: Float!
+  createdAt: DateTime!
+  enrollments(orderBy: [RoomEnrollmentOrderByInput!], skip: Float, take: Float, where: RoomEnrollmentWhereInput): [RoomEnrollment!]!
+  id: String!
+  owner: User
+  platformTier: PlatformTier
+  remainingCapcity: Float!
+  status: EnumRoomStatus
+  updatedAt: DateTime!
+}
+
+input RoomCreateInput {
+  allowedFrequency: [EnumRoomAllowedFrequency!]
+  billingDate: DateTime!
+  capcity: Float!
+  enrollments: RoomEnrollmentCreateNestedManyWithoutRoomsInput
+  owner: UserWhereUniqueInput!
+  platformTier: PlatformTierWhereUniqueInput!
+  remainingCapcity: Float!
+  status: EnumRoomStatus!
+}
+
+input RoomCreateNestedManyWithoutPlatformTiersInput {
+  connect: [RoomWhereUniqueInput!]
+}
+
+input RoomCreateNestedManyWithoutUsersInput {
+  connect: [RoomWhereUniqueInput!]
+}
+
+type RoomEnrollment {
+  createdAt: DateTime!
+  id: String!
+  paymentRecords(orderBy: [PaymentRecordOrderByInput!], skip: Float, take: Float, where: PaymentRecordWhereInput): [PaymentRecord!]!
+  room: Room
+  updatedAt: DateTime!
+  user: User
+}
+
+input RoomEnrollmentCreateInput {
+  paymentRecords: PaymentRecordCreateNestedManyWithoutRoomEnrollmentsInput
+  room: RoomWhereUniqueInput!
+  user: UserWhereUniqueInput!
+}
+
+input RoomEnrollmentCreateNestedManyWithoutRoomsInput {
+  connect: [RoomEnrollmentWhereUniqueInput!]
+}
+
+input RoomEnrollmentCreateNestedManyWithoutUsersInput {
+  connect: [RoomEnrollmentWhereUniqueInput!]
+}
+
+input RoomEnrollmentListRelationFilter {
+  every: RoomEnrollmentWhereInput
+  none: RoomEnrollmentWhereInput
+  some: RoomEnrollmentWhereInput
+}
+
+input RoomEnrollmentOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  roomId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input RoomEnrollmentUpdateInput {
+  paymentRecords: PaymentRecordUpdateManyWithoutRoomEnrollmentsInput
+  room: RoomWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input RoomEnrollmentUpdateManyWithoutRoomsInput {
+  connect: [RoomEnrollmentWhereUniqueInput!]
+  disconnect: [RoomEnrollmentWhereUniqueInput!]
+  set: [RoomEnrollmentWhereUniqueInput!]
+}
+
+input RoomEnrollmentUpdateManyWithoutUsersInput {
+  connect: [RoomEnrollmentWhereUniqueInput!]
+  disconnect: [RoomEnrollmentWhereUniqueInput!]
+  set: [RoomEnrollmentWhereUniqueInput!]
+}
+
+input RoomEnrollmentWhereInput {
+  id: StringFilter
+  paymentRecords: PaymentRecordListRelationFilter
+  room: RoomWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input RoomEnrollmentWhereUniqueInput {
+  id: String!
+}
+
+input RoomListRelationFilter {
+  every: RoomWhereInput
+  none: RoomWhereInput
+  some: RoomWhereInput
+}
+
+input RoomOrderByInput {
+  allowedFrequency: SortOrder
+  billingDate: SortOrder
+  capcity: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  ownerId: SortOrder
+  platformTierId: SortOrder
+  remainingCapcity: SortOrder
+  status: SortOrder
+  updatedAt: SortOrder
+}
+
+input RoomUpdateInput {
+  allowedFrequency: [EnumRoomAllowedFrequency!]
+  billingDate: DateTime
+  capcity: Float
+  enrollments: RoomEnrollmentUpdateManyWithoutRoomsInput
+  owner: UserWhereUniqueInput
+  platformTier: PlatformTierWhereUniqueInput
+  remainingCapcity: Float
+  status: EnumRoomStatus
+}
+
+input RoomUpdateManyWithoutPlatformTiersInput {
+  connect: [RoomWhereUniqueInput!]
+  disconnect: [RoomWhereUniqueInput!]
+  set: [RoomWhereUniqueInput!]
+}
+
+input RoomUpdateManyWithoutUsersInput {
+  connect: [RoomWhereUniqueInput!]
+  disconnect: [RoomWhereUniqueInput!]
+  set: [RoomWhereUniqueInput!]
+}
+
+input RoomWhereInput {
+  billingDate: DateTimeFilter
+  capcity: IntFilter
+  enrollments: RoomEnrollmentListRelationFilter
+  id: StringFilter
+  owner: UserWhereUniqueInput
+  platformTier: PlatformTierWhereUniqueInput
+  remainingCapcity: IntFilter
+  status: EnumRoomStatus
+}
+
+input RoomWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type Tag {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  platformProvider(orderBy: [PlatformProviderOrderByInput!], skip: Float, take: Float, where: PlatformProviderWhereInput): [PlatformProvider!]!
+  updatedAt: DateTime!
+}
+
+input TagCreateInput {
+  name: String!
+  platformProvider: PlatformProviderCreateNestedManyWithoutTagsInput
+}
+
+input TagCreateNestedManyWithoutPlatformProvidersInput {
+  connect: [TagWhereUniqueInput!]
+}
+
+input TagListRelationFilter {
+  every: TagWhereInput
+  none: TagWhereInput
+  some: TagWhereInput
+}
+
+input TagOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input TagUpdateInput {
+  name: String
+  platformProvider: PlatformProviderUpdateManyWithoutTagsInput
+}
+
+input TagUpdateManyWithoutPlatformProvidersInput {
+  connect: [TagWhereUniqueInput!]
+  disconnect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+}
+
+input TagWhereInput {
+  id: StringFilter
+  name: StringFilter
+  platformProvider: PlatformProviderListRelationFilter
+}
+
+input TagWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  enrolledRooms(orderBy: [RoomEnrollmentOrderByInput!], skip: Float, take: Float, where: RoomEnrollmentWhereInput): [RoomEnrollment!]!
+  firstName: String
+  id: String!
+  lastName: String
+  phoneNumber: String
+  roles: [String!]!
+  rooms(orderBy: [RoomOrderByInput!], skip: Float, take: Float, where: RoomWhereInput): [Room!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String!
+  enrolledRooms: RoomEnrollmentCreateNestedManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  password: String!
+  phoneNumber: String
+  roles: [String!]!
+  rooms: RoomCreateNestedManyWithoutUsersInput
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  phoneNumber: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  email: String
+  enrolledRooms: RoomEnrollmentUpdateManyWithoutUsersInput
+  firstName: String
+  lastName: String
+  password: String
+  phoneNumber: String
+  roles: [String!]
+  rooms: RoomUpdateManyWithoutUsersInput
+  username: String
+}
+
+input UserWhereInput {
+  email: StringFilter
+  enrolledRooms: RoomEnrollmentListRelationFilter
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  phoneNumber: StringNullableFilter
+  rooms: RoomListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
