@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
+import { TagListRelationFilter } from "../../tag/base/TagListRelationFilter";
 import { PlatformTierListRelationFilter } from "../../platformTier/base/PlatformTierListRelationFilter";
 @InputType()
 class PlatformProviderWhereInput {
@@ -26,7 +27,29 @@ class PlatformProviderWhereInput {
   @Field(() => StringFilter, {
     nullable: true,
   })
+  bannerImage?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
   description?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  iconImage?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -49,6 +72,18 @@ class PlatformProviderWhereInput {
     nullable: true,
   })
   name?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => TagListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => TagListRelationFilter)
+  @IsOptional()
+  @Field(() => TagListRelationFilter, {
+    nullable: true,
+  })
+  tags?: TagListRelationFilter;
 
   @ApiProperty({
     required: false,

@@ -26,6 +26,8 @@ import { DeletePlatformProviderArgs } from "./DeletePlatformProviderArgs";
 import { PlatformProviderFindManyArgs } from "./PlatformProviderFindManyArgs";
 import { PlatformProviderFindUniqueArgs } from "./PlatformProviderFindUniqueArgs";
 import { PlatformProvider } from "./PlatformProvider";
+import { TagFindManyArgs } from "../../tag/base/TagFindManyArgs";
+import { Tag } from "../../tag/base/Tag";
 import { PlatformTierFindManyArgs } from "../../platformTier/base/PlatformTierFindManyArgs";
 import { PlatformTier } from "../../platformTier/base/PlatformTier";
 import { PlatformProviderService } from "../platformProvider.service";
@@ -142,6 +144,26 @@ export class PlatformProviderResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Tag])
+  @nestAccessControl.UseRoles({
+    resource: "Tag",
+    action: "read",
+    possession: "any",
+  })
+  async tags(
+    @graphql.Parent() parent: PlatformProvider,
+    @graphql.Args() args: TagFindManyArgs
+  ): Promise<Tag[]> {
+    const results = await this.service.findTags(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @Public()

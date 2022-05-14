@@ -11,11 +11,20 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
+import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { Tag } from "../../tag/base/Tag";
 import { PlatformTier } from "../../platformTier/base/PlatformTier";
 @ObjectType()
 class PlatformProvider {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  bannerImage!: string;
+
   @ApiProperty({
     required: true,
   })
@@ -38,6 +47,14 @@ class PlatformProvider {
   })
   @IsString()
   @Field(() => String)
+  iconImage!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   id!: string;
 
   @ApiProperty({
@@ -47,6 +64,15 @@ class PlatformProvider {
   @IsString()
   @Field(() => String)
   name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Tag],
+  })
+  @ValidateNested()
+  @Type(() => Tag)
+  @IsOptional()
+  tags?: Array<Tag>;
 
   @ApiProperty({
     required: true,

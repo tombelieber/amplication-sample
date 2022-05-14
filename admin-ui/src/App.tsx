@@ -49,6 +49,10 @@ import { PlatformTierList } from "./platformTier/PlatformTierList";
 import { PlatformTierCreate } from "./platformTier/PlatformTierCreate";
 import { PlatformTierEdit } from "./platformTier/PlatformTierEdit";
 import { PlatformTierShow } from "./platformTier/PlatformTierShow";
+import { TagList } from "./tag/TagList";
+import { TagCreate } from "./tag/TagCreate";
+import { TagEdit } from "./tag/TagEdit";
+import { TagShow } from "./tag/TagShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -151,6 +155,13 @@ const App = (): React.ReactElement => {
           edit={PlatformTierEdit}
           create={PlatformTierCreate}
           show={PlatformTierShow}
+        />
+        <Resource
+          name="Tag"
+          list={TagList}
+          edit={TagEdit}
+          create={TagCreate}
+          show={TagShow}
         />
       </Admin>
     </div>

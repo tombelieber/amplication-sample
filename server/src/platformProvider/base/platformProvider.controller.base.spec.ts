@@ -11,31 +11,39 @@ import { PlatformProviderService } from "../platformProvider.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  bannerImage: "exampleBannerImage",
   createdAt: new Date(),
   description: "exampleDescription",
+  iconImage: "exampleIconImage",
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
+  bannerImage: "exampleBannerImage",
   createdAt: new Date(),
   description: "exampleDescription",
+  iconImage: "exampleIconImage",
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    bannerImage: "exampleBannerImage",
     createdAt: new Date(),
     description: "exampleDescription",
+    iconImage: "exampleIconImage",
     id: "exampleId",
     name: "exampleName",
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  bannerImage: "exampleBannerImage",
   createdAt: new Date(),
   description: "exampleDescription",
+  iconImage: "exampleIconImage",
   id: "exampleId",
   name: "exampleName",
   updatedAt: new Date(),

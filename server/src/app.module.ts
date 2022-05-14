@@ -12,6 +12,7 @@ import { PaymentRecordModule } from "./paymentRecord/paymentRecord.module";
 import { PaymentGatewayModule } from "./paymentGateway/paymentGateway.module";
 import { PlatformProviderModule } from "./platformProvider/platformProvider.module";
 import { PlatformTierModule } from "./platformTier/platformTier.module";
+import { TagModule } from "./tag/tag.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
@@ -35,6 +36,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     PaymentGatewayModule,
     PlatformProviderModule,
     PlatformTierModule,
+    TagModule,
     ACLModule,
     AuthModule,
     HealthModule,

@@ -28,6 +28,9 @@ import { PlatformProviderWhereUniqueInput } from "./PlatformProviderWhereUniqueI
 import { PlatformProviderFindManyArgs } from "./PlatformProviderFindManyArgs";
 import { PlatformProviderUpdateInput } from "./PlatformProviderUpdateInput";
 import { PlatformProvider } from "./PlatformProvider";
+import { TagFindManyArgs } from "../../tag/base/TagFindManyArgs";
+import { Tag } from "../../tag/base/Tag";
+import { TagWhereUniqueInput } from "../../tag/base/TagWhereUniqueInput";
 import { PlatformTierFindManyArgs } from "../../platformTier/base/PlatformTierFindManyArgs";
 import { PlatformTier } from "../../platformTier/base/PlatformTier";
 import { PlatformTierWhereUniqueInput } from "../../platformTier/base/PlatformTierWhereUniqueInput";
@@ -54,8 +57,10 @@ export class PlatformProviderControllerBase {
     return await this.service.create({
       data: data,
       select: {
+        bannerImage: true,
         createdAt: true,
         description: true,
+        iconImage: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -78,8 +83,10 @@ export class PlatformProviderControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        bannerImage: true,
         createdAt: true,
         description: true,
+        iconImage: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -98,8 +105,10 @@ export class PlatformProviderControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        bannerImage: true,
         createdAt: true,
         description: true,
+        iconImage: true,
         id: true,
         name: true,
         updatedAt: true,
@@ -132,8 +141,10 @@ export class PlatformProviderControllerBase {
         where: params,
         data: data,
         select: {
+          bannerImage: true,
           createdAt: true,
           description: true,
+          iconImage: true,
           id: true,
           name: true,
           updatedAt: true,
@@ -165,8 +176,10 @@ export class PlatformProviderControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          bannerImage: true,
           createdAt: true,
           description: true,
+          iconImage: true,
           id: true,
           name: true,
           updatedAt: true,
@@ -180,6 +193,102 @@ export class PlatformProviderControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "Tag",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/tags")
+  @ApiNestedQuery(TagFindManyArgs)
+  async findManyTags(
+    @common.Req() request: Request,
+    @common.Param() params: PlatformProviderWhereUniqueInput
+  ): Promise<Tag[]> {
+    const query = plainToClass(TagFindManyArgs, request.query);
+    const results = await this.service.findTags(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        id: true,
+        name: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "PlatformProvider",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/tags")
+  async connectTags(
+    @common.Param() params: PlatformProviderWhereUniqueInput,
+    @common.Body() body: TagWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tags: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "PlatformProvider",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/tags")
+  async updateTags(
+    @common.Param() params: PlatformProviderWhereUniqueInput,
+    @common.Body() body: TagWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tags: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "PlatformProvider",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/tags")
+  async disconnectTags(
+    @common.Param() params: PlatformProviderWhereUniqueInput,
+    @common.Body() body: TagWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tags: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @Public()

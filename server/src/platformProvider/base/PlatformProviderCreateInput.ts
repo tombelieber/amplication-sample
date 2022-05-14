@@ -12,10 +12,19 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, ValidateNested, IsOptional } from "class-validator";
-import { PlatformTierCreateNestedManyWithoutPlatformProvidersInput } from "./PlatformTierCreateNestedManyWithoutPlatformProvidersInput";
+import { TagCreateNestedManyWithoutPlatformProvidersInput } from "./TagCreateNestedManyWithoutPlatformProvidersInput";
 import { Type } from "class-transformer";
+import { PlatformTierCreateNestedManyWithoutPlatformProvidersInput } from "./PlatformTierCreateNestedManyWithoutPlatformProvidersInput";
 @InputType()
 class PlatformProviderCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  bannerImage!: string;
+
   @ApiProperty({
     required: true,
     type: String,
@@ -30,7 +39,27 @@ class PlatformProviderCreateInput {
   })
   @IsString()
   @Field(() => String)
+  iconImage!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   name!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => TagCreateNestedManyWithoutPlatformProvidersInput,
+  })
+  @ValidateNested()
+  @Type(() => TagCreateNestedManyWithoutPlatformProvidersInput)
+  @IsOptional()
+  @Field(() => TagCreateNestedManyWithoutPlatformProvidersInput, {
+    nullable: true,
+  })
+  tags?: TagCreateNestedManyWithoutPlatformProvidersInput;
 
   @ApiProperty({
     required: true,

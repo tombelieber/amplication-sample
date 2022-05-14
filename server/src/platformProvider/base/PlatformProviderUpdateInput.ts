@@ -12,10 +12,22 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { PlatformTierUpdateManyWithoutPlatformProvidersInput } from "./PlatformTierUpdateManyWithoutPlatformProvidersInput";
+import { TagUpdateManyWithoutPlatformProvidersInput } from "./TagUpdateManyWithoutPlatformProvidersInput";
 import { Type } from "class-transformer";
+import { PlatformTierUpdateManyWithoutPlatformProvidersInput } from "./PlatformTierUpdateManyWithoutPlatformProvidersInput";
 @InputType()
 class PlatformProviderUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  bannerImage?: string;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -36,7 +48,30 @@ class PlatformProviderUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  iconImage?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   name?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => TagUpdateManyWithoutPlatformProvidersInput,
+  })
+  @ValidateNested()
+  @Type(() => TagUpdateManyWithoutPlatformProvidersInput)
+  @IsOptional()
+  @Field(() => TagUpdateManyWithoutPlatformProvidersInput, {
+    nullable: true,
+  })
+  tags?: TagUpdateManyWithoutPlatformProvidersInput;
 
   @ApiProperty({
     required: false,
