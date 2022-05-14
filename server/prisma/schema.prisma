@@ -120,10 +120,13 @@ model PaymentGateway {
 }
 
 model PlatformProvider {
+  bannerImage String
   createdAt   DateTime       @default(now())
   description String
+  iconImage   String
   id          String         @id @default(cuid())
   name        String
+  tags        Tag[]
   tiers       PlatformTier[]
   updatedAt   DateTime       @updatedAt
 }
@@ -138,6 +141,14 @@ model PlatformTier {
   providerId String
   rooms      Room[]
   updatedAt  DateTime         @updatedAt
+}
+
+model Tag {
+  createdAt        DateTime           @default(now())
+  id               String             @id @default(cuid())
+  name             String
+  platformProvider PlatformProvider[]
+  updatedAt        DateTime           @updatedAt
 }
 
 enum EnumRoomAllowedFrequency {

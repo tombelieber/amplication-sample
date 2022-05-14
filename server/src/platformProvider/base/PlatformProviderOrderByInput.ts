@@ -25,6 +25,15 @@ class PlatformProviderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  bannerImage?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   createdAt?: SortOrder;
 
   @ApiProperty({
@@ -35,6 +44,15 @@ class PlatformProviderOrderByInput {
     nullable: true,
   })
   description?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  iconImage?: SortOrder;
 
   @ApiProperty({
     required: false,

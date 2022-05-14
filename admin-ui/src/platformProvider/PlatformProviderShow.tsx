@@ -4,8 +4,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
   TextField,
+  DateField,
   ReferenceManyField,
   Datagrid,
   ReferenceField,
@@ -17,8 +17,10 @@ export const PlatformProviderShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="bannerImage" source="bannerImage" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Description" source="description" />
+        <TextField label="iconImage" source="iconImage" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
         <DateField source="updatedAt" label="Updated At" />

@@ -10,7 +10,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, PlatformProvider, PlatformTier } from "@prisma/client";
+import { Prisma, PlatformProvider, Tag, PlatformTier } from "@prisma/client";
 
 export class PlatformProviderServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,6 +45,17 @@ export class PlatformProviderServiceBase {
     args: Prisma.SelectSubset<T, Prisma.PlatformProviderDeleteArgs>
   ): Promise<PlatformProvider> {
     return this.prisma.platformProvider.delete(args);
+  }
+
+  async findTags(
+    parentId: string,
+    args: Prisma.TagFindManyArgs
+  ): Promise<Tag[]> {
+    return this.prisma.platformProvider
+      .findUnique({
+        where: { id: parentId },
+      })
+      .tags(args);
   }
 
   async findTiers(
